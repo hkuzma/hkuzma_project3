@@ -3,7 +3,7 @@
  * Yay!
  */
 
-#include "AVLTree.h"
+#include "AvlTree.h"
 #include "BinarySearchTree.h"
 #include "SplayTree.h"
 #include "Oscar.h"
