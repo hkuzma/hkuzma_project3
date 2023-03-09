@@ -39,7 +39,7 @@ You must write a report about your project. Answer the following questions direc
     * Save your graph files in the graphs folder.
     * You do not need to graph the depths of the integer type trees or the Splay Tree that finds each object 5 times in a row, but you can if you feel it helps you analyze the data.
     * An example graph spreadsheet and an example graph image have been included in the starter code.
-    * Here is how you include an image in your README.md file: ![example graph](graphs/example-graph.png)
+    * Here is how you include an image in your README.md file: ![example graph](plots/example-graph.png)
 * Compare and contrast the graphs and explain the differences based on what you know about the structure and behavior of the trees. Justify the time complexity of searching the trees based on the results.
 
 ## Henry Kuzma Report
