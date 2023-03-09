@@ -230,15 +230,5 @@ int main() {
     }
 
     sOscarOutput2.close();
-
-
-
-
-
-
-
-
-
-
-
+    return 0;
 }
