@@ -54,9 +54,9 @@ You must write a report about your project. Answer the following questions direc
 
 **Henry Kuzma Graphs**
 
-![example graph](plots/Binary Tree.png)
-![example graph](plots/AVL Tree.png)
-![example graph](plots/Splay Tree.png)
+![example graph](../plots/Binary Tree.png)
+![example graph](../plots/AVL Tree.png)
+![example graph](../plots/Splay Tree.png)
 
 *The BST graph is linear following the slope y=x. this makes sense because each index would have*
 *roughly the same value for depth as it does for its index since the tree only uses the right branch.*
