@@ -1,128 +1,91 @@
-# CS 124 Section A, Project 3
+# CS 124 Project 3
 
-## Exploring binary search trees, AVL trees, and splay trees
+Explore Binary Search trees, AVL trees, and Splay trees!
 
-For this project, you will:
-* store integers in a binary search tree, an AVL tree, and a splay tree,
-* store object of your custom time in a binary search tree, and AVL tree, and a splay tree,
-* search for objects in these trees and record the depth of the tree that is reached for each search, and
-* analyze your results and compare the performance of different trees.
-
-For example, you will search for objects in different trees and record how many objects you had to visit to complete the search in each case. Your analysis will include comparison of results across different types of tree.
+For this project, you will store your 1000+ objects in a Binary Search Tree, an AVL Tree, and a Splay Tree. You will search for objects in the tree and record how many objects you had to visit to complete the search. You will analyze your results from the different data structures.
 
 ## Setup
-You'll probably want to start with code from project 01 (with whatever modifications were suggested). If you haven't already done so, you will need to overload `<`, `>`, `<=`, `=>`, and `==` operators so that they work with objects of your custom class. Why? So we can compare and order objects. (For tips on overloading these operators, see the original "Kepler" model, circulated with the starter code for project 1.)
+You will want to start at the end of Project 1. You should have a vector of 1000+ objects in your main function.
+* You will need to overload the <, >, <=, >=, and == operators of your class from Project 1. Use the unique field to compare objects of your class to ensure that all objects get stored in the trees.
 
-Since you have one unique key field for each record in your dataset, use this when comparing objects (and overloading operators). In this way, you'll ensure that all objects created from your data set can be inserted into trees of each type.
+## Requirements
 
-## Experiments 
+### Tree Classes
+Modify the find methods of each tree class (Binary Search Tree, AVL Tree, and Splay Tree) so that a search of the tree also stores the depth of the last node visited. To do this without losing information, pass an integer by reference into both find methods and modify the integer inside the methods.
+* The root node is at depth 0.
+* Even if the search fails, you should still record the depth of the last node visited.
 
-### Binary Search Tree
-Copy `BinarySearchTree.h` to your project and modify the `find()` methods so that a search of the tree stores the depth of the last node visited. To do this, pass an integer variable by reference into the find methods and modify it inside the methods. Note that the depth of the root node is 0. Make sure that you record the depth of the last node visited even if the search fails, so that you know how far you had to search before failing to find the target value.
+### Main Function
+Create a Binary Search Tree, an AVL Tree, and a Splay Tree all of type integer. Using a loop, insert the integers from 1 to 100 in order. In a second loop, find each integer in order and record the depths to a file in the data folder.
+* Check for understanding: print the return values and depths you get from the BST find method if you search for 0, 101, and 102 (you should get 1, 100, and 100, respectively).
 
-Instantiate a binary search tree (of integer values) and insert the numbers 1 through 100 in that order, then search for all numbers 1 through 100 and record their depths in a file. What do you notice? What is the value of the root node? What is the depth of the tree?
+Create a Binary Search Tree, an AVL Tree, and a Splay Tree all of type integer. Using a loop, insert the integers from 1 to 100 in a random order. In a second loop, find each integer in order and record the depths to a file in the data folder.
+* You can get a random sequence either from random.org or by shuffling a vector of numbers (C++ has a shuffle function).
 
-Now instantiate a new BST and insert the numbers 1 through 100 in random order. You may use https://www.random.org to generate a shuffled list of numbers 1 through 100, or you can shuffle a vector of numbers 1 through 100 using C++’s shuffle method. Now search for each number from 1 through 100, and record the depth of each find operation to a file. What do you notice? What is the value of the root node? What is the depth of the tree?
+Create a Binary Search Tree, an AVL Tree, and a Splay Tree all of your custom data type. Using a loop, insert all 1000+ objects into the trees in the order they appear in your vector. In a second loop, find each custom object in the same order and record the depths to a file in the data folder.
 
-Now instantiate a BST to hold objects of your custom data type. Read your objects into a vector (as you have done in earlier projects) and then insert them into the BST. Make sure you have at least 1000 objects in your BST. Now search for each of your objects and record its depth in a file. What do you notice? What is the value of the root node? What is the depth of your tree?
+Create another Splay Tree of your custom data type. Using a loop, insert all 1000+ objects in the order they appear in your vector. In a second loop, find each object five times in a row before searching for the next object and record the depths to a file in the data folder.
+* You should have 5000+ depths stored in the file for this tree.
+* You should have a total of 10 tree objects in main.
 
-Prepare three separate plots, one for each of these tests: BST of ints with ordered insertion, BST of ints with shuffled insertion, and BST of your custom data type. Make sure title each plot and to label both axes on each plot. Here’s an example:
+### Report
+You must write a report about your project. Answer the following questions directly in this section of the README file:
+* You will have a different grader again, so make sure your report includes information about your dataset.
+* How do the depths of the random-ordered integers compare to the depths of the ordered integers for each tree? Why?
+* How do the depths of each custom-data-type tree compare to each other?
+* Why do the depths of the second custom-data-type Splay Tree make sense?
+* Graph the Binary Search Tree, AVL Tree, and Splay Tree depths for the custom data type trees. Do not use C++ to graph, you can use whatever spreadsheet application or graphical programming language you prefer. You can use whatever graph is most readable to you (e.g. scatter plot, histogram, etc.).
+    * Your graphs should have clear labels for both x and y axes.
+    * Save your graph files in the graphs folder.
+    * You do not need to graph the depths of the integer type trees or the Splay Tree that finds each object 5 times in a row, but you can if you feel it helps you analyze the data.
+    * An example graph spreadsheet and an example graph image have been included in the starter code.
+    * Here is how you include an image in your README.md file: ![example graph](graphs/example-graph.png)
+* Compare and contrast the graphs and explain the differences based on what you know about the structure and behavior of the trees. Justify the time complexity of searching the trees based on the results.
 
-![example](plots/example.png)
+## Henry Kuzma Report
+*My Data Set is all the nominations from every oscar ceremony since they began using datatypes row (string), year_release (int)*
+*Ceremony (int), Category (string), name (string), film(string), and winner (string (either TRUE or FALSE))*
 
-HINT: Saving your output to three separate files will make your life easier. Each file should have integer value (or your custom object’s unique ID) and depth separated by a comma for each row. If you use a .csv extension when naming your output files, spreadsheet software will automatically recognize these as CSVs and will split the data into columns automatically when reading. This will make it easier to produce your plots. If you do this for all three tree types, you will have nine output files.
+*The randomly ordered depths will likely be smaller than those of the ordered depths because the ordered integers will only be entered into the right branch.*
 
-### AVL Trees
-Copy `AvlTree.h` to your project and modify the `find()` methods so that a search of the tree stores the depth of the last node visited (as above). These changes should be pretty much identical to the changes you made to `BinarySearchTree.h`. Perform the same experiments as you did for binary search trees, except now, all your trees are AVL trees. Record and analyze your results as above. Generate plots for your results as above.
+*The depths for the custom dataset will be greatest in the Binary search tree and the Splay tree. On the BST, all values will go into the same branch. In the splay tree, the items will initially push to the same depth as the BST, but as they are found the depth will decrease as the tree balances. The AVL tree will balance itself from the start and thus will have lower depths than splay at the beginning even if the two trees become closer to even later on.*
 
-How do these depths compare with your results for binary search trees? Why?
+*The depths of the second splay tree which searches for each value 5 times make sense because on the first search, the depth from where the node was originally placed will be used, but then the node is moved to the root so subsequent searches will return depth 0*
 
-### Splay Trees
-Copy `SplayTree.h` to your project and modify the `find()` methods so that a search of the tree stores the depth of the last node visited (as above). These changes should be very similar to the changes you made to `BinarySearchTree.h` and `AvlTree.h`. Notice that the `SplayTree` class takes a boolean argument in its constructor. For this portion of the assignment set this to false. Perform the same experiments as you did for binary search trees and AVL trees, except now, all your trees are splay trees. Record and analyze your results as above. Generate plots for your results as above.
+**Henry Kuzma Graphs**
 
-How do these depths compare with your results for binary search trees and AVL trees? Why?
+![example graph](plots/Binary Tree.png)
+![example graph](plots/AVL Tree.png)
+![example graph](plots/Splay Tree.png)
 
-Now perform an experiment where you populate a splay tree with integers from 1 to 100, and then search for integers in random order. But in this case, search for each integer five separate times in succession, and record the depth in each case. What do you notice? Why do these depths make sense? (You do not need to generate a plot from these data.)
+*The BST graph is linear following the slope y=x. this makes sense because each index would have*
+*roughly the same value for depth as it does for its index since the tree only uses the right branch.*
+*The splay trees graph goes from a large depth to very small depths which makes sense because as data is accessed*
+*the tree balances itself. lastly the avl graph is pretty balanced from the get go which makes sense*
+*given that avl trees self balance from the start*
 
-Finally, we will perform a test to see what difference, if any, splaying on add makes. As noted above, the `SplayTree` constructor takes a boolean argument. If this is set to true, then the splay tree will splay on add, moving the newly-added node up to the root. If this is set to false, it will add the new node, but will not splay.
 
-You are supplied a trace file in CSV format, `splay_trace.csv`, and some starter code, `splayTests2.cpp`. The trace file is a list of add and find operations and values. This is intended to simulate "real-world" application of a splay tree. The C++ code, loads and parses data from this file. You are to modify `splayTests2.cpp` so that if the trace file specifies "add" you add the indicated value to the splay tree, and if the trace file specifies "find" you are to find the indicated value. Your modifications should measure correctly the depth of the tree that is reached on each find operation, and keep a cumulative sum of these depths. If your modifications are correct, the function `calcAverageDepth()` should return the average depth reached on find operations over the entire trace file.
-
-Compile and run this program and observe the results. Is there a difference when we splay on add as opposed to when we don’t? Describe the result, and account for the difference observed if any, or explain why there is no difference, if not.
-
-## Report
-
-You must write a report about your project.
-
-* Answer all the questions above in your report.
-* Compare and contrast the results of your experiments making reference to your plots and explain the differences based on what you know about the structure and behavior of the trees.
-* Determine and justify the complexity of searching each of the different the trees---BST, AVL, and splay---based on the results. Use Big-O notation where appropriate.
-
-You can overwrite `README.md` with your report, or, if you prefer to leave `README.md`, you can write your report in a file named `REPORT.md`.
-
-## What to submit
-* You must submit your source files (including the three modified header files), your data file(s), the trace file, your output files, and your report.
-* The minimum set of files needed to compile and run all of your experiments and generate all your output files should be supplied.
-• If you are using CLion or cmake, please include your `CMakeLists.txt`.
-• Your report should be in Markdown format---you can simply replace this `README.md` file with your report.
-• You should include your data file so we can run your program! If your data file is large, you may zip it.
-
-## Preparing plots
-
-Do not use C++ to produce plots. You can use whatever spreadsheet application or graphical programming language you prefer. You can use whatever type of plot is most readable to you (_e.g._, scatter plot, histogram, _etc._).
-  * Your plots should have clear labels for both x and y axes.
-  * Save your graph files in a separate "plots" folder.
-  * You do not need to plot the depths of the integer type trees or the splay tree that finds each object five times in a row, but you can if you feel it helps you analyze the data.
-  * You can see how to include an image in your report by inspecting the Markdown source for the image above.
-  * Compare and contrast the plots and explain the differences based on what you know about the structure and behavior of the trees. Justify the time complexity of searching the trees based on the results.
-
-## Code
-
-  * The following files are supplied for you: `AvlTree.h`, `BinarySearchTree.h`, `SplayTree.h` and `splayTests2.cpp`. You are to use these in your project and include the modified versions of these files with your submission. There are also some demos `randomNumber.cpp`, `shuffleVector.cpp`, `timing.cpp` and `writeToFile.cpp`. These provide working examples of generating a random number, shuffling a vector, timing an operation, and writing to a file, respectively.
-  * Follow the course style guide.
-  * Use C++ 17 Standard.
-  * We will compile using CLion, or if that fails we may try compiling from the command line. However, it is in your best interest to stick to the basics and make sure your code complies and runs without any fuss.
-  
 **Note: Any code that was not authored by yourself or the instructor must be cited in your report. This includes the use of concepts not taught in lecture.**
 
+## Submit
+You must include your source files (including the three modified tree header files, your class header file, and the main program file), your data files (including your .csv data file and all of the output depth files), your image files (including all graphs you analyze in your report), CMakeLists.txt, and your updated README.md file that contains your report to your repository. Submit to Gradescope using the GitHub repository link, double-check that all the correct files are there, and wait for the autograder to provide feedback.
+
 ## Extra Credit
-Write a separate program (_e.g._, like `timing.cpp`) that calculates eight values, when working with your custom objects:
+To earn up to 10 extra credit points (at the grader’s discretion), you can get more thorough results. This can include:
+* Setting timers to record how long it takes you to search for the objects in each data structure and analyzing the results
+* Performing more experiments with the order of insertions/searches and analyzing the results
+* Performing the same experiments on 100, 200, 300, …N objects and graphing the results
 
-  1. average time to add one object to a BST
-  2. average time to add one object to an AVL tree,
-  3. average time to add one object to a splay tree (with splay on add set to false),
-  4. average time to add one object to a splay tree (with splay on add set to true),
-  5. average time to find one object in a BST
-  6. average time to find one object in an AVL tree,
-  7. average time to find one object in a splay tree (with splay on add set to false), and 
-  8. average time to find one object in a splay tree (with splay on add set to true).
-
-To do this, read your data from disk into a vector of objects, and then for 1000 iterations 
-
-  1. shuffle the vector,
-  2. perform timing experiments for adding objects,
-  3. shuffle the vector, and
-  4. perform timing experiments for finding objects. 
-  5. Finally, calculate averages and display the results.
-  
-Include a separate section in your written report where you discuss your findings. Are the average values you found in accordance with your expectations? Explain why or why not? How is the experiment representative of "real-world" behavior? In what way is the experiment not representative of "real-world" behavior? How would you change the experiment to improve the comparison between these different trees?
-
-Starter code for timing events in C++ is in the template repository. See: `timing.cpp`.
-
+Note that if you add this logic to your code but do not analyze it in your report, it will not count towards extra credit. If you choose to complete extra credit, include an analysis in this section of your README.md file.
 
 ## Grading
+The project is out of 80 points.
 
-| points   |                                                                                                                                                                                                                                                 |
-|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 5        | You submitted all files in the correct formats. You did not submit any files that were not requested.                                                                                                                                           |
-| 10       | Program compiles and runs.                                                                                                                                                                                                                      |
-| 10       | Your code is readable, follows good code style and standards for this class, uses consistent naming, and has comments where appropriate. Your name must appear in a comment or docblock atop each source code file authored or modified by you. |
-| 15       | The results of your BST experiments are correct and you respond to all related prompts in your report.                                                                                                                                          |
-| 15       | The results of your AVL tree experiments are correct and you respond to all related prompts in your report.                                                                                                                                     |
-| 25       | The results of your splay tree experiments are correct and you respond to all related prompts in your report.                                                                                                                                   |
-| 20       | Your report is well-written and properly cites all sources (where appropriate)                                                                                                                                                                  |
-| 100      | TOTAL                                                                                                                                                                                                                                           |
-|          |                                                                                                                                                                                                                                                 |
-| up to 10 | Extra credit                                                                                                                                                                                                                                    |
-|          |                                                                                                                                                                                                                                                 |
-
+| Points Possible | Description of requirement |
+|------------------- | ----------------------------- |
+| 5 pts | Program compiles and runs. |
+| 5 pts | Code style. Readable, naming style is consistent, comments where appropriate. |
+| 15 pts | The three BSTs in the main function are complete and correct |
+| 15 pts | The three AVL Trees in the main function are complete and correct |
+| 20 pts | The four Splay Trees in the main function are complete and correct |
+| 20 pts | Report: analysis of results, professional, grammatically correct, cites sources. |

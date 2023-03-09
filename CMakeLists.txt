@@ -7,7 +7,7 @@ add_executable(main
                main.cpp
                AvlTree.h
                BinarySearchTree.h
-               SplayTree.h)
+               SplayTree.h Oscar.h)
 
 add_executable(shuffle_demo
                shuffleVector.cpp)

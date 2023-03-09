@@ -1,19 +1,5 @@
-/**
- * Splay tree
- * CS 124
- * University of Vermont
- * Lisa Dion
- * 2018-Jun-20
- *
- * Clayton Cafiero
- * 2020-Dec-23
- * Minor revisions:
- *   - Reformatting long lines
- *   - Changes to conform to course style guide
- */
-
-#ifndef BINARYSEARCHTREE_H
-#define BINARYSEARCHTREE_H
+#ifndef PROJECT3STARTER_BINARYSEARCHTREE_H
+#define PROJECT3STARTER_BINARYSEARCHTREE_H
 
 #include <memory>
 
@@ -26,13 +12,9 @@ private:
         BinaryNode* rightChild;
 
         // Constructors
-        BinaryNode() : value(Comparable()), leftChild(nullptr),
-                       rightChild(nullptr) {}
-        explicit BinaryNode(Comparable c) : value(c), leftChild(nullptr),
-                                            rightChild(nullptr) {}
-        BinaryNode(Comparable c, BinaryNode* l, BinaryNode* r) : value(c),
-                                                                 leftChild(l),
-                                                                 rightChild(r) {}
+        BinaryNode() : value(Comparable()), leftChild(nullptr), rightChild(nullptr) {}
+        explicit BinaryNode(Comparable c) : value(c), leftChild(nullptr), rightChild(nullptr) {}
+        BinaryNode(Comparable c, BinaryNode* l, BinaryNode* r) : value(c), leftChild(l), rightChild(r) {}
     };
     BinaryNode* root;
 
@@ -48,31 +30,29 @@ private:
 
     // Helper recursive function to copy the tree.
     BinaryNode* copyNode(BinaryNode* n) {
-        return (n == nullptr)? nullptr : new BinaryNode(n->value,
-                                                        copyNode(n->leftChild),
-                                                        copyNode(n->rightChild));
+        return (n == nullptr)? nullptr : new BinaryNode(n->value, copyNode(n->leftChild), copyNode(n->rightChild));
     }
 
     // Helper recursive function to find a value in the tree.
-    bool find(const Comparable& c, BinaryNode* n) const {
+    bool find(const Comparable &c, BinaryNode* n, int& depth) const {
         if (n == nullptr) {
             // Reached a dead end. Value not in tree.
             return false;
         }
         if (c < n->value) {
             // Value is less than current node. Go to node's left child.
-            return find(c, n->leftChild);
+            return find(c, n->leftChild, ++depth);
         }
-        if (n->value < c) {
+        if (c > n->value) {
             // Value is greater than current node. Go to node's right child.
-            return find(c, n->rightChild);
+            return find(c, n->rightChild, ++depth);
         }
         // If code reaches here, c == n->value. Node found!
         return true;
     }
 
     // Helper recursive function to add a value to the tree.
-    void add(const Comparable& c, BinaryNode* &n) {
+    void add(const Comparable &c, BinaryNode* &n) {
         if (n == nullptr) {
             // We found the place where we can add the node.
             n = new BinaryNode(c, nullptr, nullptr);
@@ -97,7 +77,7 @@ private:
     }
 
     // Helper recursive function to delete a value from the tree.
-    void remove(const Comparable& c, BinaryNode* &n) {
+    void remove(const Comparable &c, BinaryNode* &n) {
         if (n == nullptr) {
             // We did not find the value. Cannot remove it. Nothing to do.
             return;
@@ -120,7 +100,7 @@ private:
         else {
             // The node we want to remove has 0 or 1 child.
             // If it has a child, move it up. If not, set to nullptr.
-            BinaryNode* oldNode = n;
+            BinaryNode *oldNode = n;
             n = (n->leftChild != nullptr) ? n->leftChild : n->rightChild;
             delete oldNode;
             oldNode = nullptr;
@@ -134,7 +114,7 @@ public:
     }
 
     // Copy Constructor
-    BinarySearchTree(const BinarySearchTree& b) {
+    BinarySearchTree(const BinarySearchTree &b) {
         // calls private helper function
         root = copyNode(b.root);
     }
@@ -155,26 +135,26 @@ public:
         return (root == nullptr);
     }
 
-    bool find(const Comparable& c) const {
+    bool find(const Comparable &c, int& depth) const {
         // calls private helper function
-        return find(c, root);
+        return find(c, root, depth);
     }
 
-    void add(const Comparable& c) {
+    void add(const Comparable &c) {
         // calls private helper function
         add(c, root);
     }
 
-    void remove(const Comparable& c) {
+    void remove(const Comparable &c) {
         // calls private helper function
         remove(c, root);
     }
 
     // Overloaded = operator
-    BinarySearchTree& operator = (const BinarySearchTree& rhs) {
+    BinarySearchTree& operator = (const BinarySearchTree &rhs) {
         root = copyNode(rhs.root);
     }
 };
 
 
-#endif // BINARYSEARCHTREE_H
+#endif //PROJECT3STARTER_BINARYSEARCHTREE_H
