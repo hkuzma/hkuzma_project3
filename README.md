@@ -54,7 +54,7 @@ You must write a report about your project. Answer the following questions direc
 
 **Henry Kuzma Graphs**
 
-![example graph]([plots/Binary Tree.png])
+![example graph](hkuzma_project3/plots/Binary Tree.png)
 
 ![example graph](plots/AVL Tree.png)
 
